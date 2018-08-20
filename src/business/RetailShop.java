@@ -1,41 +1,52 @@
 package business;
 
-import java.util.ArrayList;
+import java.util.Scanner;
 
-import model.GeneralItem;
 import model.Item;
-import model.MedicalItem;
+import services.FactoryServices;
+import services.ItemEnum;
+import services.RetailServices;
 
 public class RetailShop {
 
+	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		ArrayList<Item> purchaseItem = new ArrayList<>();
-		String option = null;
-		do {
-			
-		}while(option=="q");
-		Item gItem = new GeneralItem("Biscuit", 1, 15);
-		Item gItem1 = new GeneralItem("chip", 1, 15);
-		Item gItem2= new GeneralItem("chocolate", 1, 50);
-		Item gItem3 = new GeneralItem("book", 1, 150);
-		Item gItem4 = new GeneralItem("pencil", 10, 5);
-		Item mItem = new MedicalItem("Eavil", 1, 15);
-		purchaseItem.add(gItem);
-		purchaseItem.add(gItem1);
-		purchaseItem.add(gItem2);
-		purchaseItem.add(gItem3);
-		purchaseItem.add(gItem4);
-		purchaseItem.add(mItem);
-		double totalMRP =0.0;
-		double totalSale = 0.0;
-		for (Item item : purchaseItem) {
-			System.out.println(item.getUnitsOnHand()+" "+ item.getDescription()+" "+ item.getMaxRetailPrice());
-			totalMRP+=item.getMaxRetailPrice();
-			totalSale += item.getSaleTaxes();
-		}
-		System.out.println("tatal sales:"+ totalSale);
-		System.out.println("tatal :"+ totalMRP);
+		RetailServices retailServices = new RetailServices();
+		FactoryServices factory = new FactoryServices();
 		
+		Scanner input = new Scanner(System.in);
+		Item item;
+		int value;
+//		Just have static input
+		do {
+			System.out.println("Please enter the following option");
+			System.out.println("1. list for general item");
+			System.out.println("2. list for medical item");
+			System.out.println("3. to Quit");
+			
+			value = input.nextInt();
+			switch (value) {
+			case 1:
+				item = factory.getInstance(ItemEnum.GENERAL);
+				item.setDescription("biscuit");
+				item.setUnitsOnHand(2);
+				item.setRetailPrice(20);
+				retailServices.addItem(item);
+				break;
+			case 2:
+				item = factory.getInstance(ItemEnum.MEDICAL);
+				item.setDescription("paracitamol");
+				item.setUnitsOnHand(20);
+				item.setRetailPrice(20);
+				retailServices.addItem(item);
+				break;
+
+			}
+
+		} while (3 != value);
+
+		retailServices.display(retailServices.getAllItem());
+
 	}
 
 }

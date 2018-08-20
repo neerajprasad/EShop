@@ -1,11 +1,17 @@
 package model;
 
+public class GeneralItem extends Item {
 
+	public GeneralItem() {
+		super();
+		super.setTaxes(20);
+	}
 
-public class GeneralItem extends Item{
-	public GeneralItem(String description, int unitsOnHand, double retailPrice) {
-		super(description, unitsOnHand, retailPrice);
-		super.setTaxes(0.20);
+	@Override
+	public void displayItem() {
+		System.out.println("1.Biscuit:20");
+		System.out.println("2.chocolate:50");
+		System.out.println("3.Chips:15");
 	}
 
 }

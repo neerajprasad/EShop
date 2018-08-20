@@ -1,12 +1,10 @@
 package model;
 
-
-
 /**
  * Retail item class that holds data about the items
  */
 
-public class Item
+public abstract class Item
 
 {
 
@@ -16,35 +14,27 @@ public class Item
 	private double retailPrice; // price of item
 	private double taxes; // default taxes percentage
 
-	// constructor
-	public Item(String description, int unitsOnHand, double retailPrice) {
-		super();
-		this.description = description;
-		this.unitsOnHand = unitsOnHand;
-		this.retailPrice = retailPrice;
-	}
-
-	public void setDescription(String type){
+	public void setDescription(String type) {
 		description = type;
 	}
 
-	public void setUnitsOnHand(int unit){
+	public void setUnitsOnHand(int unit) {
 		unitsOnHand = unit;
 	}
 
-	public void setRetailPrice(double price){
+	public void setRetailPrice(double price) {
 		retailPrice = price;
 	}
 
-	public String getDescription(){
+	public String getDescription() {
 		return description;
 	}
 
-	public int getUnitsOnHand(){
+	public int getUnitsOnHand() {
 		return unitsOnHand;
 	}
 
-	public double getRetailPrice(){
+	public double getRetailPrice() {
 		return retailPrice;
 	}
 
@@ -53,18 +43,8 @@ public class Item
 	}
 
 	public void setTaxes(double taxes) {
-		this.taxes = taxes;
+		this.taxes = taxes/100.0;
 	}
 
-	public double getTotalPrice() {
-		return getRetailPrice() * getUnitsOnHand();
-	}
-
-	public double getMaxRetailPrice() {
-		return (1 + getTaxes()) * getTotalPrice();
-	}
-
-	public double getSaleTaxes() {
-		return getTaxes() * getTotalPrice();
-	}
+	public abstract void displayItem() ;
 }
