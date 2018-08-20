@@ -95,4 +95,13 @@ public class TestTotalTaxes {
 		assertEquals(test_salesTax, retailServices.getSaleTaxes(item));
 		
 	}
+	@Test
+	public void test_GIVEN_item_WHEN_0_unit_item_THEN_total_sale_tax() {
+		Item item = new GeneralItem();
+		item.setDescription("paracitamol");
+		item.setUnitsOnHand(0);
+		item.setRetailPrice(20);
+		assertEquals(0, retailServices.getSaleTaxes(item));
+		
+	}
 }
