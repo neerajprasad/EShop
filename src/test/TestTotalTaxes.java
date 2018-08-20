@@ -101,7 +101,7 @@ public class TestTotalTaxes {
 	@Test
 	public void test_GIVEN_item_WHEN_0_unit_item_THEN_total_sale_tax() {
 		Item item = factory.getInstance(ItemEnum.GENERAL);
-		item.setDescription("paracitamol");
+		item.setDescription("biscuit");
 		item.setUnitsOnHand(0);
 		item.setRetailPrice(20);
 		assertEquals(0, retailServices.getSaleTaxes(item));
