@@ -9,25 +9,28 @@ import org.junit.Test;
 import model.GeneralItem;
 import model.Item;
 import model.MedicalItem;
+import services.FactoryServices;
+import services.ItemEnum;
 import services.RetailServices;
 // given - when -then
 public class TestTotalTaxes {
 	RetailServices retailServices = new RetailServices();
+	FactoryServices factory = new FactoryServices();
 	
 	public void setUp() {
-		Item med_item = new MedicalItem();
+		Item med_item = factory.getInstance(ItemEnum.MEDICAL);
 		med_item.setDescription("paracitamol");
 		med_item.setUnitsOnHand(2);
 		med_item.setRetailPrice(20);
 		retailServices.addItem(med_item);
 		
-		Item gitem = new GeneralItem();
+		Item gitem = factory.getInstance(ItemEnum.GENERAL);
 		gitem.setDescription("biscuit");
 		gitem.setUnitsOnHand(2);
 		gitem.setRetailPrice(20);
 		retailServices.addItem(gitem);
 		
-		Item gen_1 = new GeneralItem();
+		Item gen_1 = factory.getInstance(ItemEnum.GENERAL);
 		gen_1.setDescription("Chips");
 		gen_1.setUnitsOnHand(1);
 		gen_1.setRetailPrice(15);
@@ -35,7 +38,7 @@ public class TestTotalTaxes {
 	}
 	@Test
 	public void test_GIVEN_General_item_THEN_20_percentage_tax() {
-		Item item = new GeneralItem();
+		Item item = factory.getInstance(ItemEnum.GENERAL);
 		item.setDescription("biscuit");
 		item.setUnitsOnHand(2);
 		item.setRetailPrice(20);
@@ -45,7 +48,7 @@ public class TestTotalTaxes {
 	}
 	@Test
 	public void test_GIVEN_medical_item_THEN_0_percentage_tax() {
-		Item item = new MedicalItem();
+		Item item = factory.getInstance(ItemEnum.MEDICAL);
 		item.setDescription("paracitamol");
 		item.setUnitsOnHand(2);
 		item.setRetailPrice(20);
@@ -85,7 +88,7 @@ public class TestTotalTaxes {
 	}
 	@Test
 	public void test_GIVEN_gen_item_WHEN_10_percentage_THEN_total_sale_tax() {
-		Item item = new GeneralItem();
+		Item item = factory.getInstance(ItemEnum.MEDICAL);
 		item.setDescription("paracitamol");
 		item.setUnitsOnHand(2);
 		item.setRetailPrice(20);
@@ -97,7 +100,7 @@ public class TestTotalTaxes {
 	}
 	@Test
 	public void test_GIVEN_item_WHEN_0_unit_item_THEN_total_sale_tax() {
-		Item item = new GeneralItem();
+		Item item = factory.getInstance(ItemEnum.GENERAL);
 		item.setDescription("paracitamol");
 		item.setUnitsOnHand(0);
 		item.setRetailPrice(20);
