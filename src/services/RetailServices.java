@@ -28,7 +28,7 @@ public class RetailServices {
 		return item.getTaxes() * getTotalPrice(item);
 	}
 	
-	public void display() {
+	public void displayItem() {
 		System.out.println("1.Biscuit");
 		System.out.println("2.chocolate");
 		System.out.println("3.Chips");
@@ -36,7 +36,7 @@ public class RetailServices {
 		System.out.println("5.avil");
 		
 	}
-	public void display(ArrayList<Item> purchaseItem) {
+	public void printReciptWithPrice(ArrayList<Item> purchaseItem) {
 		double totalMRP =0.0;
 		double totalSale = 0.0;
 		for (Item item : purchaseItem) {

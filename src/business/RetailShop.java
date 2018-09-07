@@ -45,7 +45,7 @@ public class RetailShop {
 
 		} while (3 != value);
 
-		retailServices.display(retailServices.getAllItem());
+		retailServices.printReciptWithPrice(retailServices.getAllItem());
 
 	}
 
